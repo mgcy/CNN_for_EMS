@@ -17,8 +17,8 @@ Usage:  Replace uninterested labels together, i.e.,
         merge 0, 2, 8 and 20 into 20. Alternatively, 1 can
         be replaced as well.
 Replace rule:
-        0, 2, 20, 8 => 3
-        1 => 4
+        0, 2, 19, 20, 8 => 3
+        1 => 4 (for delete later)
         1.1 => 0
         1.2 => 1
         1.3 => 2
@@ -39,24 +39,25 @@ def replaced_labels():
     print('Labels counter before replacement:')
     print(collections.Counter(list))
 
-    # Replace 0 with 4
-    list = [3 if x == 0 else x for x in list]
-    # Replace 2 with 4
-    list = [3 if x == 2 else x for x in list]
-    # Replace 20 with 4
-    list = [3 if x == 20 else x for x in list]
-    # Replace 8 with 4
-    list = [3 if x == 8 else x for x in list]
-    # Replace 1 with 0
-    list = [4 if x == 1 else x for x in list]
-    # Replace 1.1 with 1
-    list = [0 if x == 1.1 else x for x in list]
-    # Replace 1.2 with 2
-    list = [1 if x == 1.2 else x for x in list]
-    # Replace 1.3 with 3
-    list = [2 if x == 1.3 else x for x in list]
-    # Replace 19.0 with 4
+    # Replace 19.0 with 3
     list = [4 if x == 19.0 else x for x in list]
+    # Replace 0 with 3
+    list = [3 if x == 0 else x for x in list]
+    # Replace 2 with 3
+    list = [4 if x == 2 else x for x in list]
+    # Replace 20 with 3
+    list = [4 if x == 20 else x for x in list]
+    # Replace 8 with 3
+    list = [4 if x == 8 else x for x in list]
+    # Replace 1 with 4
+    list = [4 if x == 1 else x for x in list]
+    # Replace 1.1 with 0
+    list = [0 if x == 1.1 else x for x in list]
+    # Replace 1.2 with 1
+    list = [1 if x == 1.2 else x for x in list]
+    # Replace 1.3 with 2
+    list = [2 if x == 1.3 else x for x in list]
+
     # Print the replacement result
     print('Labels counter after replacement:')
     print(collections.Counter(list))

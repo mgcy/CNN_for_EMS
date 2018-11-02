@@ -37,8 +37,10 @@ import delete_label
 import shuffle_data_labels
 import select_labels
 
-window_size = 10
+window_size = 30
 date_days = 16
+pure = 1
+confuse_tolerance = 1
 
 print('Start expand')
 expand_sec.expand_sec(date_days)
@@ -49,7 +51,10 @@ replaced_label.replaced_labels()
 print('Finish replace')
 
 print('Start re-label')
-relabel.relabel(window_size)
+if pure == 1:
+    relabel.relabel_pure(window_size, confuse_tolerance)
+if pure == 0:
+    relabel.relabel(window_size)
 print('Finish re-label')
 
 print('Start merge images')
@@ -57,11 +62,11 @@ merged_image.merged_image(window_size, date_days)
 print('Finish merge images')
 
 print('Start combine')
-combine_data_label.combine_data_label()
+combine_data_label.combine_data_label(pure)
 print('Finish combine')
 
 print('Start delete')
-delete_label.delete_label()
+delete_label.delete_label(pure)
 print('Finish delete')
 
 print('Start shuffle')

@@ -76,17 +76,53 @@ def expand_sec(date_days):
                 labels = [str(l.split()[4]) for l in
                           open("D:\Academic\data_nvspl\SRCID_LAKE017_expand_labels_sort.txt")]
                 len_labels = len(labels)
-                for i in range(0, 3600):
+                for i in range(1, 3601):
                     for m in range(0, len_labels):
+                        '''
+                        # Prior labels > post labels
                         if i < int(start_time[m]):
                             f2.write('0\n')
                             break
-                        if i >= int(start_time[m]) and i <= (int(start_time[m]) + int(len_time[m])):
+                        if i >= int(start_time[m]) and i < (int(start_time[m]) + int(len_time[m])):
                             f2.write(labels[m] + '\n')
                             break
-                        if i > (int(start_time[len_labels - 1]) + int(len_time[len_labels - 1])):
+                        if i >= (int(start_time[len_labels - 1]) + int(len_time[len_labels - 1])):
                             f2.write('0\n')
                             break
+                        '''
+                        # Prior labels < post labels
+                        if m < (len_labels - 2):
+                            if int(start_time[m + 1]) < (int(start_time[m]) + int(len_time[m])):
+                                # overlap exist in this m
+                                if i >= int(start_time[m + 1]) and i < (int(start_time[m]) + int(len_time[m]) - 1):
+                                    f2.write(labels[m + 1] + '\n')
+                                    break
+                                if i < int(start_time[m + 1]) and i >= int(start_time[m]):
+                                    f2.write(labels[m] + '\n')
+                                    break
+                            else:
+                            # no overlab in this m
+                                if i < int(start_time[m]):
+                                    f2.write('0\n')
+                                    break
+                                if i >= int(start_time[m]) and i < (int(start_time[m]) + int(len_time[m])):
+                                    f2.write(labels[m] + '\n')
+                                    break
+                                if i >= (int(start_time[len_labels - 1]) + int(len_time[len_labels - 1])):
+                                    f2.write('0\n')
+                                    break
+
+                        else:
+                            if i < int(start_time[m]):
+                                f2.write('0\n')
+                                break
+                            if i >= int(start_time[m]) and i < (int(start_time[m]) + int(len_time[m])):
+                                f2.write(labels[m] + '\n')
+                                break
+                            if i >= (int(start_time[len_labels - 1]) + int(len_time[len_labels - 1])):
+                                f2.write('0\n')
+                                break
+
             else:
                 for i4 in range(3600):
                     f2.write('0\n')

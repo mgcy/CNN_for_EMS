@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/AudioRec.iml" filepath="$PROJECT_DIR$/.idea/AudioRec.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/CNN_for_EMS.iml" filepath="$PROJECT_DIR$/.idea/CNN_for_EMS.iml" />
     </modules>
   </component>
 </project>

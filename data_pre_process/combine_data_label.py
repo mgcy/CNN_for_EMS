@@ -22,8 +22,11 @@ Parameters:
 import collections
 
 
-def combine_data_label():
-    labels = [int(l.split()[0]) for l in open("D:\Academic\data_nvspl\\SRCID_LAKE017_re_labels.txt")]
+def combine_data_label(pure):
+    if pure == 1:
+        labels = [int(l.split()[0]) for l in open("D:\Academic\data_nvspl\\SRCID_LAKE017_re_labels_pure.txt")]
+    if pure == 0:
+        labels = [int(l.split()[0]) for l in open("D:\Academic\data_nvspl\\SRCID_LAKE017_re_labels.txt")]
     f1 = open("D:\Academic\data_nvspl\\SRCID_LAKE017_data.txt", 'r')
     f2 = open("D:\Academic\data_nvspl\\SRCID_LAKE017_combine_data_label.txt", 'w')
     i0 = 0
@@ -46,4 +49,4 @@ def combine_data_label():
 
 
 if __name__ == '__main__':
-    combine_data_label()
+    combine_data_label(pure=0)
